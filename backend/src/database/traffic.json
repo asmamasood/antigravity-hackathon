@@ -1,0 +1,5 @@
+[
+  { "road": "Gulshan Main Road", "status": "Blocked", "congestionLevel": 95, "reason": "Water Accumulation" },
+  { "road": "University Road", "status": "Slow", "congestionLevel": 70, "reason": "Rain" },
+  { "road": "Shara-e-Faisal", "status": "Normal", "congestionLevel": 20, "reason": "None" }
+]

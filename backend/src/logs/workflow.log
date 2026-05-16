@@ -1,0 +1,10 @@
+2026-05-13 20:33:50 [ERROR]: Gemini API Key is missing!
+2026-05-13 20:33:51 [WARN]: Firebase credentials missing. Running in Mock Mode.
+2026-05-13 20:33:51 [INFO]: 
+    🚀 CIRO Backend Server Started
+    -----------------------------------
+    URL: http://localhost:5000
+    ENV: development
+    TIME: 13/05/2026, 8:33:51 pm
+    -----------------------------------
+  

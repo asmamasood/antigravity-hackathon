@@ -1,0 +1,16 @@
+{
+  "name": "ResQ AI — Autonomous Disaster Intelligence",
+  "short_name": "ResQ AI",
+  "description": "Pakistan's National AI-Powered Emergency Response Command System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050d18",
+  "theme_color": "#00d4ff",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}

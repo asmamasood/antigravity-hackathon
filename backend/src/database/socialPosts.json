@@ -1,0 +1,5 @@
+[
+  { "id": "S1", "source": "Twitter", "text": "Huge flooding in Gulshan Block 13D, cars submerged!", "timestamp": "2026-05-13T10:00:00Z" },
+  { "id": "S2", "source": "Facebook", "text": "Accident on Shara-e-Faisal near nursery, stay away.", "timestamp": "2026-05-13T10:05:00Z" },
+  { "id": "S3", "source": "WhatsApp", "text": "Traffic jam at Johar Chowrangi due to rain water.", "timestamp": "2026-05-13T10:10:00Z" }
+]

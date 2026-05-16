@@ -1,0 +1,65 @@
+name: ResQ AI — Production CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Install dependencies
+      run: |
+        pip install .
+        pip install pytest
+    - name: Run tests
+      run: pytest
+
+  build-and-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Login to DockerHub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./backend
+        push: true
+        tags: resq-ai/backend:${{ github.sha }}, resq-ai/backend:latest
+        
+    - name: Set up K8s context
+      uses: azure/k8s-set-context@v3
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        
+    - name: Deploy to K8s (Blue-Green)
+      run: |
+        # Blue-Green Deployment Strategy
+        # 1. Update image in deployment
+        kubectl set image deployment/resq-api api=resq-ai/backend:${{ github.sha }}
+        
+        # 2. Verify rollout
+        kubectl rollout status deployment/resq-api
+        
+        # 3. If failure, rollback
+        if [ $? -ne 0 ]; then
+          kubectl rollout undo deployment/resq-api
+          exit 1
+        fi

@@ -1,0 +1,9 @@
+{
+  "karachi": {
+    "condition": "Heavy Rain",
+    "temperature": 28,
+    "humidity": 85,
+    "alert": "Urban Flooding Warning",
+    "timestamp": "2026-05-13T10:00:00Z"
+  }
+}
